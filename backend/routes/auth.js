@@ -21,16 +21,22 @@ router.post('/signup', async (req, res) => {
             });
             bcrypt.genSalt(10, (err, salt) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err;
+                    if (err) return res.status(500).json({ message: 'Error hashing password' });
                     newUser.password = hash;
                     newUser
                         .save()
-                        .then(user => res.json(user))
-                        .catch(err => console.log(err));
+                        .then(user => res.status(201).json({
+                            message: 'User created', user: {
+                                id: user.id,
+                                username: user.username,
+                                email: user.email
+                            }
+                        }))
+                        .catch(err => res.status(500).json({ message: 'Error saving user' }));
                 });
             });
         }
-    });
+    }).catch(err => res.status(500).json({ message: 'Error checking user' }));
 });
 
 // login
@@ -44,13 +50,19 @@ router.post('/login', (req, res) => {
             if (isMatch) {
                 const payload = { id: user.id, username: user.username };
                 jwt.sign(payload, process.env.SECRET_OR_KEY, { expiresIn: 3600 }, (err, token) => {
-                    res.json({ success: true, token: 'Bearer ' + token });
+                    res.json({
+                        message: 'Successful login', token: 'Bearer ' + token, user: {
+                            id: user.id,
+                            username: user.username,
+                            email: user.email
+                        }
+                    });
                 });
             } else {
                 return res.status(400).json({ message: 'Password incorrect.' });
             }
-        });
-    });
+        }).catch(err => res.status(500).json({ message: 'Error checking password' }));
+    }).catch(err => res.status(500).json({ message: 'Error checking user' }));
 });
 
 // protected, get user session information

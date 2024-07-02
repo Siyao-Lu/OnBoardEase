@@ -2,6 +2,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cors = require('cors');
 
 // const eventRoutes = require('./routes/events');
 const authRoutes = require('./routes/auth');
@@ -9,14 +10,14 @@ require('dotenv').config();
 
 const app = express();
 
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    optionsSuccessStatus: 200,
+};
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// app.use((req, res, next) => {
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PATCH,DELETE');
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-//     next();
-// });
+app.use(cors(corsOptions));
 
 // passport middleware
 app.use(passport.initialize());
@@ -35,12 +36,6 @@ mongoose
 app.use('/auth', authRoutes);
 
 // app.use('/events', eventRoutes);
-
-// app.use((error, req, res, next) => {
-//     const status = error.status || 500;
-//     const message = error.message || 'Something went wrong.';
-//     res.status(status).json({ message: message });
-// });
 
 app.listen(8080, () => {
     console.log('Server running on port 8080.'); 
