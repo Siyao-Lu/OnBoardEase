@@ -1,0 +1,25 @@
+body, html, #root {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.footer {
+    /*background-color: #000;*/
+    /*color: white;*/
+    /*text-align: center;*/
+    /*padding: 1px 0;*/
+    /*width: 100%;*/
+    /*flex-shrink: 0;*/
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
+    color: white;
+    text-align: center;
+}
+
+.footer:hover {
+    text-decoration: underline;
+}
