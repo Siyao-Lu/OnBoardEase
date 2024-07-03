@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../context/UserContext";
 import { getProjects, createProject, getMembers } from "../../services/api";
 import Modal from 'react-modal';
+import Select from 'react-select';
 import './ManagerDashboard.css';
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
@@ -40,7 +41,7 @@ const ManagerDashboard = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [projectName, setProjectName] = useState('');
     const [members, setMembers] = useState<Member[]>([]);
-    const [selectedMembers, setSelectedMembers] = useState<string[]>([]);
+    const [selectedMembers, setSelectedMembers] = useState<{ value: string, label: string }[]>([]);
     const [tasks, setTasks] = useState<{ name: string, description: string}[]>([{ name: '', description: ''}]);
     const [resources, setResources] = useState<Resource[]>([{ name: '', link: '' }]);
     // const [newResource, setNewResource] = useState<Resource>({ name: '', link: '' });
@@ -78,7 +79,7 @@ const ManagerDashboard = () => {
         const newProject = { 
             _id: '',
             name: projectName, 
-            members: selectedMembers,
+            members: selectedMembers.map(member => member.value),
             tasks,
             startTime: new Date(),
             endTime: new Date(),
@@ -115,16 +116,25 @@ const ManagerDashboard = () => {
         setResources(updatedResources);
     };
 
-    const handleMemberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        const options = Array.from(e.target.options);
-        const selected: string[] = [];
-        for (const option of options) {
-            if (option.selected) {
-                selected.push(option.value);
-            }
-        }
-        setSelectedMembers(selected);
+    const memberOptions = members.map(member => ({
+        value: member._id,
+        label: `${member.username} (${member.email})`
+    }));
+
+    const handleMemberChange = (selectedOptions: any) => {
+        setSelectedMembers(selectedOptions.map((option: any) => option.value));
     };
+
+    // const handleMemberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    //     const options = Array.from(e.target.options);
+    //     const selected: string[] = [];
+    //     for (const option of options) {
+    //         if (option.selected) {
+    //             selected.push(option.value);
+    //         }
+    //     }
+    //     setSelectedMembers(selected);
+    // };
 
     return (
         <div className="manager-home">
@@ -159,13 +169,13 @@ const ManagerDashboard = () => {
                     </label>
                     <label>
                         Add Members:
-                        <select multiple value={selectedMembers} onChange={handleMemberChange}>
-                            {members.map(member => (
-                                <option key={member._id} value={member._id}>
-                                    {member.username} ({member.email})
-                                </option>
-                            ))}
-                        </select>
+                        <Select
+                            isMulti
+                            options={memberOptions}
+                            onChange={handleMemberChange}
+                            className="select-container"
+                            classNamePrefix="Select"
+                        />
                     </label>
                     <h3>Add Tasks</h3>
                     {tasks.map((task, index) => (

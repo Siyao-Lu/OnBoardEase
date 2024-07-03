@@ -130,3 +130,47 @@ button[type="button"] {
 button[type="button"]:hover {
     background-color: #007BB5;
 }
+
+/* Style for react-select dropdown */
+.select-container {
+    margin-bottom: 20px;
+}
+
+.Select__control {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.Select__menu {
+    width: 100%;
+    display: block;
+    /* Ensure the menu displays block elements */
+}
+
+.Select__option {
+    width: 100%;
+    display: block;
+    /* Ensure each option is displayed as block */
+}
+
+.Select__multi-value {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    padding: 0 8px;
+    margin: 2px;
+}
+
+.Select__multi-value__label {
+    margin-right: 4px;
+}
+
+.Select__multi-value__remove {
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    cursor: pointer;
+}

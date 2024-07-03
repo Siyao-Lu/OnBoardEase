@@ -31,7 +31,8 @@ interface Resource {
 }
 
 interface ResourceResponse {
-    resources: Resource[];
+    // resources: Resource[];
+    link: string;
 }
 
 interface Member {
@@ -150,8 +151,8 @@ export const postResources = async (resources: Resource[]): Promise<AxiosRespons
 };
 
 // get resource, query includes name
-export const getResources = async (name: string): Promise<AxiosResponse<ResourceResponse>> => {
-    return await resourceApi.get<ResourceResponse>(`/?name=${name}`);
+export const getResources = async (name: string): Promise<AxiosResponse<Resource[]>> => {
+    return await resourceApi.get<Resource[]>(`/?name=${name}`);
 };
 
 // create project
