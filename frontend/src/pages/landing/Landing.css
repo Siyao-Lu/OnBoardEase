@@ -19,3 +19,138 @@
 
 
 /* Feel free to add more like background images, etc. */
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #0d0d0d;
+  background-image: linear-gradient(
+      30deg,
+      #333 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #333 87.5%,
+      #333
+    ),
+    linear-gradient(
+      150deg,
+      #333 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #333 87.5%,
+      #333
+    ),
+    linear-gradient(
+      30deg,
+      #333 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #333 87.5%,
+      #333
+    ),
+    linear-gradient(
+      150deg,
+      #333 12%,
+      transparent 12.5%,
+      transparent 87%,
+      #333 87.5%,
+      #333
+    ),
+    linear-gradient(
+      60deg,
+      rgba(255, 0, 0, 0.3) 25%,
+      transparent 25.5%,
+      transparent 75%,
+      rgba(255, 0, 0, 0.3) 75%,
+      rgba(255, 0, 0, 0.3)
+    ),
+    linear-gradient(
+      60deg,
+      rgba(255, 0, 0, 0.3) 25%,
+      transparent 25.5%,
+      transparent 75%,
+      rgba(255, 0, 0, 0.3) 75%,
+      rgba(255, 0, 0, 0.3)
+    );
+  background-size: 60px 104px;
+  background-position: 0 0, 0 0, 30px 52px, 30px 52px, 0 0, 30px 52px;
+  font-family: Arial, sans-serif;
+}
+
+.app-name {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 2rem;
+}
+
+.landing-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.landing-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #444;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.landing-button:hover {
+  background-color: #666;
+}
+
+.modal-content {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.modal-content input[type="submit"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content input[type="submit"]:hover {
+  background-color: #0056b3;
+}
