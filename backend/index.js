@@ -2,25 +2,38 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const cors = require('cors');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const cors = require('cors'); 
 
 // const eventRoutes = require('./routes/events');
 const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/admin');
 require('dotenv').config();
 
 const app = express();
 
-const corsOptions = {
-    origin: 'http://localhost:3000',
-    optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//     origin: 'http://localhost:3000',
+//     optionsSuccessStatus: 200,
+// };
 
+// middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+app.use(cookieParser());
+// app.use(cors(corsOptions));
+app.use(cors());
 
-// passport middleware
+app.use(session({
+    secret: process.env.SECRET_OR_KEY,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {secure: false, maxAge: 3600000},
+}));
+
 app.use(passport.initialize());
+app.use(passport.session());
 require('./config/passport')(passport);
 
 // mongoDB connection
@@ -34,8 +47,15 @@ mongoose
 
 // routes
 app.use('/auth', authRoutes);
+app.use('/admin', adminRoutes);
 
 // app.use('/events', eventRoutes);
+
+// app.use((error, req, res, next) => {
+//     const status = error.status || 500;
+//     const message = error.message || 'Something went wrong.';
+//     res.status(status).json({ message: message });
+// });
 
 app.listen(8080, () => {
     console.log('Server running on port 8080.'); 

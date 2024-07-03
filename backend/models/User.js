@@ -13,6 +13,16 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
+    },
+    role: {
+        type: String,
+        enum: ['manager', 'member', 'pending'],
+        default: 'pending',
+    },
+    status: {
+        type: String,
+        enum: ['pending', 'approved'],
+        default: 'pending',
     }
 });
 

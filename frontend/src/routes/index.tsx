@@ -1,16 +1,48 @@
-import React, { Suspense } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { Suspense, useEffect, useContext, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
+import AdminDashboard from "../pages/admin/AdminDashboard";
 
 const Landing = React.lazy(() => import("../pages/landing"));
 const Home = React.lazy(() => import("../pages/home"));
 
 const AppRoutes = () => {
+    const { token, setToken, setUser, user } = useContext(UserContext)!;
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem('user');
+        const storedToken = localStorage.getItem('token');
+        if (storedUser && storedToken) {
+            console.log("Setting user and token from local storage");
+            console.log("User", storedUser);
+            console.log("Token", storedToken);
+            setUser(JSON.parse(storedUser));
+            setToken(storedToken);
+        }
+        setIsLoading(false);
+    }, [setToken, setUser]);
+
+    const ProtectedRoute = ({children}: {children: JSX.Element}) => {
+        return token ? children : <Navigate to="/" />;
+    };
+
+    const AdminRoute = ({children}: {children: JSX.Element}) => {
+        return user && user.role === 'admin' ? children : <Navigate to="/" />;
+    }
+    console.log("User role", user?.role);
+
+    if (isLoading) {
+        return <div>Loading...</div>;
+    }
+    
     return (
         <Router>
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
                     <Route path="/" element={<Landing />} />
-                    <Route path="/home" element={<Home />} />
+                    <Route path="/home" element={<ProtectedRoute><Home /></ProtectedRoute>} />
+                    <Route path="/admin" element={<AdminRoute><AdminDashboard /></AdminRoute>} />
                 </Routes>
             </Suspense>
         </Router>

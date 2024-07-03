@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext} from "react";
 import { FaUserCircle } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 import './Navigation.css';
 import logo from '../assets/logo.png';
 
 const Navigation = () => {
     const navigate = useNavigate();
-    const username = localStorage.getItem('username') || 'User';
+    const context = useContext(UserContext);
+    if (!context) {
+        throw new Error('useUser must be used within a UserProvider');
+    }
+    const { user, logout } = context;
     const handleLogout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('username');
+        logout();
         navigate('/');
     };
 
@@ -19,13 +23,14 @@ const Navigation = () => {
                 <img src={logo} alt="Logo" className="navbar-logo" />
             </div>
             <div className="navbar-right">
-                <div className="dropdown">
+                {user && (<div className="dropdown">
                     <FaUserCircle size={30} className="dropdown-profile" />
-                    <span className="dropdown-username">{username}</span>
+                    <span className="dropdown-username">{user.username}</span>
                     <div className="dropdown-content">
                         <a onClick={handleLogout}>Logout</a>
                     </div>
                 </div>
+                )}
             </div>
         </nav>
     );

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Modal from "react-modal";
 import { signup, login } from "../../services/api";
+import { UserContext } from "../../context/UserContext";
 import './Landing.css';
 
 interface FormData {
@@ -12,22 +13,32 @@ interface FormData {
 }
 
 const Landing = () => {
+    const { setUser, setToken, user, token } = React.useContext(UserContext)!;
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [isLogin, setIsLogin] = useState(true);
     const [formData, setFormData] = useState<FormData>({ email: '', password: '' });
     const [error, setError] = useState<string | null>(null);
+    const [message, setMessage] = useState<string | null>(null);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (token && user) {
+            navigate(user.role === 'admin' ? '/admin' : '/home');
+        }
+    }, [token, user, navigate]);
 
     const handleLogin = () => {
         setIsLogin(true);
         setFormData({ email: '', password: '' });
         setError(null);
+        setMessage(null);
         setModalIsOpen(true);
     };
     const handleSignup = () => {
         setIsLogin(false);
         setFormData({ username: '', email: '', password: '', confirmPassword: '' });
         setError(null);
+        setMessage(null);
         setModalIsOpen(true);
     };
 
@@ -45,32 +56,31 @@ const Landing = () => {
         try {
             let response;
             if (isLogin) {
-                console.log('Logging in with', formData);
                 response = await login({ email: formData.email, password: formData.password });
+                if (response.status === 200) {
+                    const { token, user } = response.data;
+                    setToken(token || '');
+                    setUser(user || null);
+                    localStorage.setItem('token', token || '');
+                    localStorage.setItem('user', JSON.stringify(user));
+                    setModalIsOpen(false);
+                    navigate(user?.role === 'admin' ? '/admin' : '/home');
+                } else {
+                    setError(response.data.message || 'An error occurred');
+                }
             } else {
                 if (formData.password !== formData.confirmPassword) {
                     setError("Passwords do not match");
                     return;
                 }
-                console.log('Signing up with', formData);
                 response = await signup({ username: formData.username, email: formData.email, password: formData.password });
-            }
-            console.log('Response received', response);
-            if (response.status === 200 || response.status === 201) {
-                if (isLogin && response.data.token) {
-                    localStorage.setItem('token', response.data.token);
-                    localStorage.setItem('username', response.data.user?.username || ''); //login
+                if (response.status === 201) {
+                    setMessage("User created successfully. Awaiting admin approval. Please check back later.");
+                } else {
+                    setError(response.data.message || 'An error occurred');
                 }
-                if (!isLogin && response.data.user) {
-                    localStorage.setItem('username', response.data.user.username); //signup
-                }
-                setModalIsOpen(false);
-                navigate('/home');
-            } else {
-                setError(response.data.message || 'An error occurred');
             }
         } catch (err: any) {
-            console.error(err);
             if (err.response && err.response.data && err.response.data.message) {
                 setError(err.response.data.message);
             } else {
@@ -106,17 +116,18 @@ const Landing = () => {
                         </label>
                         <label>
                             Password:
-                            <input type="password" name="password" value={formData.password} onChange={handleChange} required />
+                            <input type="password" name="password" value={formData.password} onChange={handleChange} required autoComplete="current-password" />
                         </label>
                         {!isLogin && (
                             <label>
                                 Confirm Password:
-                                <input type="password" name="confirmPassword" value={formData.confirmPassword!} onChange={handleChange} required />
+                                <input type="password" name="confirmPassword" value={formData.confirmPassword!} onChange={handleChange} required autoComplete="current-password" />
                             </label>
                         )}
                         <input type="submit" value="Submit" />
                     </form>
                     {error && <p className="error">{error}</p>}
+                    {message && <p className="message">{message}</p>}
                 </div>
             </Modal>
         </div>
