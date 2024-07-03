@@ -9,6 +9,8 @@ const cors = require('cors');
 // const eventRoutes = require('./routes/events');
 const authRoutes = require('./routes/auth');
 const adminRoutes = require('./routes/admin');
+const projectRoutes = require('./routes/projects');
+const resourceRoutes = require('./routes/resources');
 require('dotenv').config();
 
 const app = express();
@@ -48,6 +50,8 @@ mongoose
 // routes
 app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
+app.use('/project', projectRoutes);
+app.use('/resource', resourceRoutes);
 
 // app.use('/events', eventRoutes);
 
