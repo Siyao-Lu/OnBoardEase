@@ -39,7 +39,21 @@ router.get('/get-members', authenticate, async (req, res) => {
 // get projects for logged in manager
 router.get('/manager', authenticate, async (req, res) => {
     try {
-        const projects = await Project.find({ manager: req.user._id }).populate('members', 'username email').populate('manager', 'username email');
+        let projects = await Project.find({ manager: req.user._id });
+        console.log("Before populate: ", projects);
+
+        projects = await Project.populate(projects, [
+            { path: 'members', select: 'username email' },
+            { path: 'manager', select: 'username email' }
+        ]);
+
+        console.log("After populate: ", projects);
+        projects.forEach(project => {
+            console.log("Project Members:");
+            project.members.forEach(member => {
+                console.log("Member: ", member);
+            });
+        });
         res.json(projects);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching projects', error });
@@ -49,7 +63,21 @@ router.get('/manager', authenticate, async (req, res) => {
 // get projects for logged in member
 router.get('/member', authenticate, async (req, res) => {
     try {
-        const projects = await Project.find({ members: req.user._id }).populate('members', 'username email').populate('manager', 'username email');
+        let projects = await Project.find({ members: req.user._id });
+        console.log("Before populate: ", projects);
+
+        projects = await Project.populate(projects, [
+            { path: 'members', select: 'username email' },
+            { path: 'manager', select: 'username email' }
+        ]);
+
+        console.log("After populate: ", projects);
+        projects.forEach(project => {
+            console.log("Project Members:");
+            project.members.forEach(member => {
+                console.log("Member: ", member);
+            });
+        });
         res.json(projects);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching projects', error });

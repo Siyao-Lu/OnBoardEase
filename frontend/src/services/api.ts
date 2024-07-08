@@ -30,10 +30,10 @@ interface Resource {
     link: string;
 }
 
-interface ResourceResponse {
-    // resources: Resource[];
-    link: string;
-}
+// interface ResourceResponse {
+//     // resources: Resource[];
+//     link: string;
+// }
 
 interface Member {
     _id: string;
@@ -147,7 +147,7 @@ export const approveUser = async (userId: string, role: string): Promise<AxiosRe
 
 // post array of resources
 export const postResources = async (resources: Resource[]): Promise<AxiosResponse<any>> => {
-    return await resourceApi.post('/', resources);
+    return await resourceApi.post('/', { resources});
 };
 
 // get resource, query includes name

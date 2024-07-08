@@ -22,8 +22,8 @@ interface Member {
 interface Project {
     _id: string;
     name: string;
-    // manager: Member;
-    members: string[];
+    manager: Member;
+    members: Member[];
     tasks: Task[];
     startTime: Date;
     endTime: Date;
@@ -39,12 +39,26 @@ const MemberDashboard = () => {
         const fetchProjects = async () => {
             try {
                 const response = await getMemberProjects();
-                setProjects(response.data);
+                const projectsWithManager = response.data.map((project: any) => ({
+                    ...project,
+                    manager: { username: project.manager.username, email: project.manager.email },
+                    members: project.members.map((member: any) => ({
+                        _id: member._id,
+                        username: member.username,
+                        email: member.email
+                    })),
+                    tasks: project.tasks.map((task: any) => ({
+                        name: task.name,
+                        description: task.description,
+                        status: task.status
+                    }))
+                }));
+                console.log("Project with manager:", projectsWithManager);
+                setProjects(projectsWithManager);
             } catch (error) {
                 console.error('Error fetching projects:', error);
             }
         };
-
         fetchProjects();
     }, [token]);
 
@@ -57,6 +71,12 @@ const MemberDashboard = () => {
         setModalIsOpen(false);
         setSelectedProject(null);
     };
+
+    const formatDate = (dateString: Date) => {
+        const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
 
     return (
         <div className="member-home">
@@ -72,8 +92,8 @@ const MemberDashboard = () => {
                     <tbody>
                         {projects.map(project => (
                             <tr key={project._id} onClick={() => handleProjectClick(project)}>
-                                <td>{project.name}</td>
-                                {/* <td>{project.manager.username} ({project.manager.email})</td> */}
+                                <td className="project-name">{project.name}</td>
+                                <td>{project.manager.username} ({project.manager.email})</td>
                             </tr>
                         ))}
                     </tbody>
@@ -81,20 +101,23 @@ const MemberDashboard = () => {
             </div>
             <Footer />
 
-            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Project Details">
+            <Modal isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Project Details" className="member-modal-content">
                 {selectedProject && (
-                    <>
+                    <div className="project-details">
                         <h2>Project Details</h2>
                         <p><strong>Project Name:</strong> {selectedProject.name}</p>
-                        {/* <p><strong>Manager:</strong> {selectedProject.manager.username} ({selectedProject.manager.email})</p> */}
-                        <h3>Tasks</h3>
+                        <p><strong>Manager:</strong> {selectedProject.manager.username} ({selectedProject.manager.email})</p>
+                        <p><strong>Members:</strong> {selectedProject.members.map(member => `${member.username} (${member.email})`).join(', ')}</p>
+                        <p><strong>Tasks:</strong></p>
                         <ul>
                             {selectedProject.tasks.map((task, index) => (
-                                <li key={index}>{task.name}: {task.description}</li>
+                                <li key={index}>{task.name}: {task.description} ({task.status})</li>
                             ))}
                         </ul>
-                        <button onClick={closeModal}>Close</button>
-                    </>
+                        <p><strong>Start Time:</strong> {formatDate(selectedProject.startTime)}</p>
+                        <p><strong>End Time:</strong> {formatDate(selectedProject.endTime)}</p>
+                        <button onClick={closeModal} className="close-button">Close</button>
+                    </div>
                 )}
             </Modal>
 

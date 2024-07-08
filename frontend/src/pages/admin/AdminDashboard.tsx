@@ -99,7 +99,7 @@ const AdminDashboard = () => {
                                         onChange={(e) => handleRoleChange(user._id, e.target.value)}
                                     >
                                         <option value="">Select Role</option>
-                                        <option value="member">Member</option>
+                                        <option value="member">Employee</option>
                                         <option value="manager">Manager</option>
                                     </select>
                                     {errors[user._id] && <p className="error">{errors[user._id]}</p>}

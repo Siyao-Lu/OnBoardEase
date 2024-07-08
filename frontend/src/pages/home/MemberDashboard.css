@@ -1,67 +1,206 @@
-/* General styles for the member dashboard */
+/* Scoped CSS for Member Dashboard */
 .member-home {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    align-items: center;
+    padding: 20px;
 }
 
 .member-content {
-    flex: 1;
-    padding: 20px;
-    background-color: #f8f8f8;
+    width: 80%;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #0f100f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 .projects-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    cursor: pointer;
 }
 
 .projects-table th,
 .projects-table td {
     border: 1px solid #ddd;
     padding: 8px;
-}
-
-.projects-table th {
-    background-color: #4CAF50;
-    color: white;
     text-align: left;
 }
 
-/* Styles for modal */
-.ReactModal__Overlay {
-    background-color: rgba(0, 0, 0, 0.75) !important;
+.projects-table th {
+    background-color: #333;
+    color: white;
 }
 
-.ReactModal__Content {
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    padding: 20px;
-    border-radius: 8px;
-    background-color: #fff;
-}
-
-h2 {
-    margin-bottom: 20px;
-}
-
-button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 4px;
-    border: none;
-    color: #fff;
-    background-color: #4CAF50;
+/* Make project name clickable */
+.project-name {
+    color: blue;
+    text-decoration: underline;
     cursor: pointer;
 }
 
-button:hover {
-    opacity: 0.8;
+.project-name:hover {
+    color: darkblue;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select {
+    height: 100px;
+    /* Adjust this height as necessary */
+}
+
+input[type="text"] {
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+form div input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+form div input:last-child {
+    margin-right: 0;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+h3 {
+    margin-top: 30px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+button[type="button"] {
+    background-color: #008CBA;
+}
+
+button[type="button"]:hover {
+    background-color: #007BB5;
+}
+
+/* Scoped modal content for member dashboard */
+.member-modal-content {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.member-modal-content h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.member-modal-content label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.member-modal-content input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+}
+
+.member-modal-content button[type="submit"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.member-modal-content button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Modal bullet point alignment */
+.project-details ul {
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.project-details ul li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* Change color for the Close button and table headers */
+button.close-button {
+    background-color: #333;
+}
+
+button.close-button:hover {
+    background-color: #555;
 }

@@ -5,7 +5,9 @@ const authenticate = require('../util/authenticate');
 
 // create resource
 router.post('/', authenticate, async (req, res) => {
+    console.log("Request: ", req.body);
     const { resources } = req.body; // Expecting an array of resources
+    console.log("Posting resources: ", resources);
     try {
         const createdResources = await Resource.insertMany(resources);
         res.status(201).json({ message: 'Resources created successfully', resources: createdResources });

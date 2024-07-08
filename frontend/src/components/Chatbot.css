@@ -40,6 +40,10 @@
     margin-bottom: 10px;
 }
 
+.chatbot-avatar {
+    margin-right: 5px;
+}
+
 .chatbot-input {
     display: flex;
     padding: 10px;
@@ -61,4 +65,23 @@
     color: white;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.typing-indicator {
+    display: inline-block;
+    animation: typing 1s steps(3, end) infinite;
+}
+
+@keyframes typing {
+    0% {
+        content: ".";
+    }
+
+    33% {
+        content: "..";
+    }
+
+    66% {
+        content: "...";
+    }
 }

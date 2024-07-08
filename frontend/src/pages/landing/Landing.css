@@ -65,7 +65,7 @@
   background-color: #555;
 }
 
-.modal-content {
+.landing-modal-content {
   padding: 2rem;
   background-color: #fff;
   border-radius: 0.1rem;
@@ -75,21 +75,21 @@
   text-align: center;
 }
 
-.modal-content h2 {
+.landing-modal-content h2 {
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
   color: #333;
 }
 
-.modal-content label {
+.landing-modal-content label {
   display: block;
   margin-bottom: 0.5rem;
   font-weight: bold;
   color: #000000;
 }
 
-.modal-content input[type="text"],
-.modal-content input[type="password"] {
+.landing-modal-content input[type="text"],
+.landing-modal-content input[type="password"] {
   width: 100%;
   padding: 0.5rem;
   margin-bottom: 1rem;
@@ -98,7 +98,7 @@
   box-sizing: border-box;
 }
 
-.modal-content input[type="submit"] {
+.landing-modal-content input[type="submit"] {
   width: 100%;
   padding: 0.5rem;
   font-size: 1rem;
@@ -110,6 +110,6 @@
   transition: background-color 0.3s ease;
 }
 
-.modal-content input[type="submit"]:hover {
+.landing-modal-content input[type="submit"]:hover {
   background-color: #0056b3;
 }

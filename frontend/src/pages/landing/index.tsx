@@ -101,7 +101,7 @@ const Landing = () => {
                 onRequestClose={() => setModalIsOpen(false)}
                 contentLabel={isLogin ? "Login Modal" : "Signup Modal"}
             >
-                <div className="modal-content">
+                <div className="landing-modal-content">
                     <h2>{isLogin ? "Login" : "Sign Up"}</h2>
                     <form onSubmit={handleSubmit}>
                         {!isLogin && (
