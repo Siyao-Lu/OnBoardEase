@@ -12,21 +12,21 @@ body, html, #root {
     height: 70px;
     position: relative;
     flex-shrink: 0;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .navbar-logo {
     position: absolute;
-    top: 10px; /* Adjust as needed */
-    left: 10px; /* Adjust as needed */
-    height: 50px;
+    top: 0; /* Adjust as needed */
+    left: 0; /* Adjust as needed */
+    height: 90px;
 }
 
 .navbar-right {
     display: flex;
     justify-content: flex-end;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     margin: 0 auto;
     position: absolute;
 }
@@ -44,16 +44,18 @@ body, html, #root {
     /*position: relative;*/
     /*display: inline-block;*/
     float: left;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .dropdown-profile {
-    padding: 10px;
+    padding: 0;
     border: none;
     cursor: pointer;
     outline: none;
     background-color: inherit;
     margin: 0;
+    height: 50px;
+    width: 50px;
 }
 
 .navbar a:hover, .dropdown:hover .dropdown-profile {
