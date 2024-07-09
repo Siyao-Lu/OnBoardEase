@@ -75,7 +75,6 @@ select {
 
 select {
     height: 100px;
-    /* Adjust this height as necessary */
 }
 
 input[type="text"] {
@@ -150,13 +149,11 @@ button[type="button"]:hover {
 .react-select__menu {
     width: 100%;
     display: block;
-    /* Ensure the menu displays block elements */
 }
 
 .react-select__option {
     width: 100%;
     display: block;
-    /* Ensure each option is displayed as block */
 }
 
 .react-select__multi-value {

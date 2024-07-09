@@ -75,7 +75,6 @@ select {
 
 select {
     height: 100px;
-    /* Adjust this height as necessary */
 }
 
 input[type="text"] {

@@ -27,8 +27,6 @@ interface Project {
     startTime: Date;
     endTime: Date;
     manager: { username: string; email: string };
-    // members: { username: string, email: string }[];
-    // tasks: { name: string, description: string, status: string }[];
 }
 
 interface Resource {
@@ -46,7 +44,6 @@ const ManagerDashboard = () => {
     const [tasks, setTasks] = useState<{ name: string, description: string}[]>([{ name: '', description: ''}]);
     const [resources, setResources] = useState<Resource[]>([{ name: '', link: '' }]);
     const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-    // const [newResource, setNewResource] = useState<Resource>({ name: '', link: '' });
 
     useEffect(() => {
         const fetchProjects = async () => {
@@ -68,8 +65,6 @@ const ManagerDashboard = () => {
                 }));
                 console.log("Project with members:", projectsWithMembers);
                 setProjects(projectsWithMembers);
-                // const response = await getProjects();
-                // setProjects(response.data);
             } catch (error) {
                 console.error('Error fetching projects:', error);
             }
@@ -78,6 +73,8 @@ const ManagerDashboard = () => {
             try {
                 const response = await getMembers();
                 setMembers(response.data);
+                console.log("Members:", response.data);
+                console.log("Set Members:", members);
             } catch (error) {
                 console.error('Error fetching members:', error);
             }
@@ -116,25 +113,11 @@ const ManagerDashboard = () => {
         }
     };
 
-    // const handleDeleteTask = (index: number) => {
-    //     const newTasks = [...tasks];
-    //     newTasks.splice(index, 1);
-    //     setTasks(newTasks);
-    // };
-
     const handleAddResource = () => {
         if (resources[resources.length - 1].name && resources[resources.length - 1].link) {
             setResources([...resources, { name: '', link: '' }]);
         }
-        // setResources([...resources, newResource]);
-        // setNewResource({ name: '', link: '' });
     };
-
-    // const handleDeleteResource = (index: number) => {
-    //     const newResources = [...resources];
-    //     newResources.splice(index, 1);
-    //     setResources(newResources);
-    // };
 
     const handleTaskChange = (index: number, field: string, value: string) => {
         const newTasks = [...tasks];
@@ -143,7 +126,6 @@ const ManagerDashboard = () => {
     };
 
     const handleResourceChange = (index: number, field: string, value: string) => {
-        // setNewResource({ ...newResource, [e.target.name]: e.target.value });
         const updatedResources = [...resources];
         updatedResources[index] = { ...updatedResources[index], [field]: value };
         setResources(updatedResources);
@@ -155,7 +137,6 @@ const ManagerDashboard = () => {
     }));
 
     const handleMemberChange = (selectedOptions: any) => {
-        // setSelectedMembers(selectedOptions.map((option: any) => option.value));
         setSelectedMembers(selectedOptions);
         console.log("Selected Members:", selectedOptions);
     };
@@ -167,17 +148,6 @@ const ManagerDashboard = () => {
     const closeProjectDetails = () => {
         setSelectedProject(null);
     };
-
-    // const handleMemberChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    //     const options = Array.from(e.target.options);
-    //     const selected: string[] = [];
-    //     for (const option of options) {
-    //         if (option.selected) {
-    //             selected.push(option.value);
-    //         }
-    //     }
-    //     setSelectedMembers(selected);
-    // };
 
     const formatDate = (dateString: Date) => {
         const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -242,7 +212,6 @@ const ManagerDashboard = () => {
                                 onChange={(e) => handleTaskChange(index, 'description', e.target.value)}
                                 required
                             />
-                            {/* <button type="button" onClick={() => handleDeleteTask(index)}>-</button> */}
                         </div>
                     ))}
                     <button type="button" onClick={handleAddTask}>Add Task</button>
@@ -264,7 +233,6 @@ const ManagerDashboard = () => {
                                 onChange={(e) => handleResourceChange(index, 'link', e.target.value)}
                                 required
                             />
-                            {/* <button type="button" onClick={() => handleDeleteResource(index)}>-</button> */}
                         </div>
                     ))}
                     <button type="button" onClick={handleAddResource}>Add Resource</button>

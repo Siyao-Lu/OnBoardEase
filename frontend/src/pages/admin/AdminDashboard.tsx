@@ -23,7 +23,7 @@ const AdminDashboard = () => {
         const fetchPendingUsers = async () => {
             try {
                 const response = await getPendingUsers();
-                console.log("Fetched pending users:", response.data); // Debug log
+                console.log("Fetched pending users:", response.data);
                 setPendingUsers(response.data);
             } catch (err) {
                 console.error('Error fetching pending users:', err);

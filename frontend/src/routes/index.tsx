@@ -6,7 +6,6 @@ import ManagerDashboard from "../pages/home/ManagerDashboard";
 import MemberDashboard from "../pages/home/MemberDashboard";
 
 const Landing = React.lazy(() => import("../pages/landing"));
-const Home = React.lazy(() => import("../pages/home"));
 
 const AppRoutes = () => {
     const { token, setToken, setUser, user } = useContext(UserContext)!;

@@ -30,11 +30,6 @@ interface Resource {
     link: string;
 }
 
-// interface ResourceResponse {
-//     // resources: Resource[];
-//     link: string;
-// }
-
 interface Member {
     _id: string;
     username: string;
@@ -44,15 +39,13 @@ interface Member {
 interface Task {
     name: string;
     description: string;
-    status?: string; // 'pending' | 'in progress' | 'completed'
+    status?: string; 
 }
 
 interface Project {
     _id: string;
     name: string;
-    // manager: string;
     members: string[];
-    // members: { username: string, email: string }[];
     tasks: Task[];
     startTime: Date;
     endTime: Date;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Chatbot.css';
 import { getResources } from '../services/api';
-import { FaRobot } from 'react-icons/fa'; // Import the robot icon
+import { FaRobot } from 'react-icons/fa';
 import { UserContext } from '../context/UserContext';
 import { getMemberProjects } from '../services/api';
 
@@ -73,7 +73,7 @@ const Chatbot = () => {
     return (
         <div className={`chatbot-container ${isOpen ? 'open' : ''}`}>
             <button className="chatbot-button" onClick={handleToggle}>
-                <FaRobot size={50} /> {/* Use the robot icon */}
+                <FaRobot size={50} />
             </button>
             {isOpen && (
                 <div className="chatbot-popup">
