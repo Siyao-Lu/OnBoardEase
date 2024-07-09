@@ -1,0 +1,42 @@
+.admin-dashboard {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.admin-content {
+    flex: 1;
+    padding: 20px;
+}
+
+.pending-users-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pending-users-table th,
+.pending-users-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.pending-users-table th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+.pending-users-table td select {
+    width: 100%;
+    padding: 4px;
+}
+
+.pending-users-table td button {
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+.error {
+    color: red;
+    margin-top: 5px;
+    font-size: 0.875em;
+}

@@ -1,0 +1,245 @@
+/* Scoped CSS for Manager Dashboard */
+.manager-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.manager-content {
+    width: 80%;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #0f100f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.projects-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.projects-table th,
+.projects-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.projects-table th {
+    background-color: #333;
+    color: white;
+}
+
+/* Make project name clickable */
+.project-name {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.project-name:hover {
+    color: darkblue;
+}
+
+h2 {
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+select {
+    height: 100px;
+}
+
+input[type="text"] {
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+form div input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+form div input:last-child {
+    margin-right: 0;
+}
+
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+h3 {
+    margin-top: 30px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+button[type="button"] {
+    background-color: #008CBA;
+}
+
+button[type="button"]:hover {
+    background-color: #007BB5;
+}
+
+/* Style for react-select dropdown */
+.select-container {
+    margin-bottom: 20px;
+}
+
+.react-select__control {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.react-select__menu {
+    width: 100%;
+    display: block;
+}
+
+.react-select__option {
+    width: 100%;
+    display: block;
+}
+
+.react-select__multi-value {
+    display: flex;
+    align-items: center;
+    background-color: #e0e0e0;
+    border-radius: 4px;
+    padding: 0 8px;
+    margin: 2px;
+}
+
+.react-select__multi-value__label {
+    margin-right: 4px;
+}
+
+.react-select__multi-value__remove {
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
+    cursor: pointer;
+}
+
+/* Scoped modal content for manager dashboard */
+.manager-modal-content {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 0.1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+.manager-modal-content h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.manager-modal-content label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #000000;
+}
+
+.manager-modal-content input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    box-sizing: border-box;
+}
+
+.manager-modal-content button[type="submit"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.manager-modal-content button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Modal bullet point alignment */
+.project-details ul {
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.project-details ul li {
+    margin-bottom: 10px;
+}
+
+/* Change color for the Close button and table headers */
+button.close-button {
+    background-color: #333;
+}
+
+button.close-button:hover {
+    background-color: #555;
+}

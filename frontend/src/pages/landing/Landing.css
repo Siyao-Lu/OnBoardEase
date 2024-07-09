@@ -1,0 +1,115 @@
+/* .landing-page {}
+
+.app-name {}
+
+.landing-buttons {}
+
+.landing-button {}
+
+.landing-button:hover {}
+
+.modal-content {}
+
+.modal-content label {}
+
+.modal-content input[type="text"] {}
+.modal-content input[type="password"] {}
+.modal-content input[type="submit"] {}
+.modal-content input[type="submit"]:hover {} */
+
+/* Feel free to add more like background images, etc. */
+
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("img1.jpg"); /* Make sure to replace this with the actual path */
+  background-size: cover;
+  font-family: Arial, sans-serif;
+}
+
+.content-box {
+  padding: 2rem;
+  background-color: #fff; /* White background for the box */
+  padding: 85rem;
+  border-radius: 0.5rem;
+  color: rgb(251, 247, 247);
+  text-align: center;
+}
+
+.app-name {
+  font-size: 3rem;
+  color: #000000;
+  margin-bottom: 2rem;
+}
+
+.landing-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.landing-button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #080808;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.landing-button:hover {
+  background-color: #555;
+}
+
+.landing-modal-content {
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 0.1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  margin: auto;
+  text-align: center;
+}
+
+.landing-modal-content h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.landing-modal-content label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.landing-modal-content input[type="text"],
+.landing-modal-content input[type="password"] {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+}
+
+.landing-modal-content input[type="submit"] {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.landing-modal-content input[type="submit"]:hover {
+  background-color: #0056b3;
+}
