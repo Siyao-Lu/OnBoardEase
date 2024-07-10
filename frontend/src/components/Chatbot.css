@@ -1,3 +1,31 @@
+.chatbot-button img {
+    width: 30px;
+    /* Adjust the size as needed */
+    height: 30px;
+    /* Adjust the size as needed */
+    z-index: 9999;
+    /* Ensure the image is on top */
+}
+
+.chatbot-icon {
+    width: 50px;
+    /* Adjust the size as needed */
+    height: 50px;
+    /* Adjust the size as needed */
+}
+
+.chatbot-avatar {
+    width: 20px;
+    /* Adjust the size as needed */
+    height: 20px;
+    /* Adjust the size as needed */
+    vertical-align: middle;
+    /* Align the icon properly with text */
+    margin-right: 5px;
+    /* Space between the icon and text */
+}
+
+/* Other existing CSS */
 .chatbot-container {
     position: fixed;
     bottom: 20px;
@@ -30,15 +58,6 @@
 .chatbot-button:hover {
     background-color: #005f73;
     /* Noticeable color change on hover */
-}
-
-.chatbot-button img {
-    width: 30px;
-    /* Adjust the size as needed */
-    height: 30px;
-    /* Adjust the size as needed */
-    z-index: 9999;
-    /* Ensure the image is on top */
 }
 
 .chatbot-popup {
