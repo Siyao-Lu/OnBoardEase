@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Chatbot.css';
 import { getResources } from '../services/api';
-import { FaRobot } from 'react-icons/fa';
+import chatbotIcon from '../assets/chatbot.png';
 import { UserContext } from '../context/UserContext';
 import { getMemberProjects } from '../services/api';
 
@@ -73,7 +73,7 @@ const Chatbot = () => {
     return (
         <div className={`chatbot-container ${isOpen ? 'open' : ''}`}>
             <button className="chatbot-button" onClick={handleToggle}>
-                <FaRobot size={50} />
+                <img src={chatbotIcon} alt="Chatbot Icon" className="chatbot-icon" />
             </button>
             {isOpen && (
                 <div className="chatbot-popup">
