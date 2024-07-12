@@ -27,9 +27,16 @@ To run backend:
 2. Home page (Manager): As a manager, user can log in, create project and assign it to any registered employees.
 3. Home page (Employee): As an employee, user can view assigned projects as well as utilize the chatbot.
 
+See below example section. 
 
 ## Features/Future Work 
 1. User Authorization: In our local development, we added a layer of authorization by requiring admin approval. For future scalability or integration with existing environment, we would integrate Activity Directory or SSO (Single Sign-On) to avoid the overhead of creating and approving accounts.
 2. Session Management: In our local development, we added a token to safeguard user authentication and a cookie to improve user experience by extending the session validity for an hour. All these information are stored in local browser. For future scalability, a different strategy should be considered.
 3. Security: In our local development, we encrypt and salt user signup password information. In addition, backend routes and resources are protected by requiring an authentication token from frontend requests. For future development, we would further enhance secured transaction by utilizing HTTPS and employing different end-to-end or at-rest, in-transit encryption mechanism. If hosted in the cloud, we would also consider native cloud security solutions.
 4. Chatbot Capability: In our local development, the chatbot feature is accomplished by doing a database key word search. For more intelligent and advanced functionalities, we would consider model training and fine tuning.
+
+## Example
+Landing page view: ![Landing](screenshots/landing-view.png)
+Admin page view: ![Admin](screenshots/admin-view.png)
+Manager page view: ![Manager](screenshots/manager-view.png)
+Employee page view: ![Employee](screenshots/employee-view.png)
