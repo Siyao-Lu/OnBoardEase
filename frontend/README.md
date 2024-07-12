@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+## Overview 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The frontend contains the following src components/folders:
+
+1. assets - image resources for styling purposes
+2. components - standalone components such as chatbot, navigation bar and footer
+3. context - user context for improved session management
+4. pages - landing page, manager home page and employee home page
+5. routes - web app routes
+6. services - API endpoints for backend interaction
+
 
 ## Available Scripts
 
